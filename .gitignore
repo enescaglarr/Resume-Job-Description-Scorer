@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+.venv/
+.venv-test/
+venv/
+env/
+
+# Environment variables
+.env
+
+# OS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Generated outputs
+output/*.pkl
+test_output/
+
+# Real resumes contain PII - do not publish. Use resume_data_synthetic/ instead.
+resume_data/

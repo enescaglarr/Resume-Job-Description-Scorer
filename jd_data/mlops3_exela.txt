@@ -1,0 +1,14 @@
+Requirements:
+Bachelor's or Master's degree in a quantitative field (CS, machine learning, mathematics, statistics) or equivalent experience.
+4 to 5 years of extensive experience as an MLOps Engineer, operationalizing and scaling ML/LLM models built by data science teams.
+Excellent programming skills in Python with strong experience building production deployment pipelines around models developed in NumPy, Pandas, Scikit-learn, TensorFlow, etc.
+Key MLOps Skills:
+Expertise in MLOps processes and tooling for deployment, scaling, versioning, and monitoring of ML/LLM models at production scale.
+Hands-on experience with ML lifecycle management tools such as MLflow, Seldon, or Kubeflow.
+Strong understanding of containerization and orchestration technologies including Docker and Kubernetes for model serving infrastructure.
+Experience setting up CI/CD/CT pipelines for automated model retraining, validation, and rollout.
+Knowledge of GPU computing and infrastructure for scaling inference of large models, including LLM and transformer-based workloads.
+Experience implementing logging, monitoring, alerting, and drift detection for production ML workloads.
+Experience with ML model governance, access control, and security considerations in production environments.
+Excellent communication and presentation skills to work closely with data science and platform engineering teams.
+Experience with cloud-based AI infrastructure and services such as Azure ML or GCP Vertex AI is preferred.

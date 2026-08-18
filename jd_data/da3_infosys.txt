@@ -1,0 +1,18 @@
+Job Description
+We are looking for a Data Architect to own the end-to-end data architecture strategy across our enterprise data platform.
+Define and document the enterprise data model, data policies, naming standards, and governance rules that determine how data is collected, stored, secured, and consumed across business units.
+Design scalable, high-performance logical and physical data models and schemas that support integration, storage, and retrieval across multiple domains.
+Own and maintain ER diagrams, data dictionaries, and metadata standards across all systems.
+Define data security, data retention, backup, and disaster recovery policies aligned with compliance requirements.
+Establish architectural standards for data warehousing, master data management, and cross-team data integration patterns.
+Evaluate and select appropriate database technologies (relational, NoSQL, columnar) for new initiatives, balancing cost, performance, and long-term maintainability.
+Lead architecture review boards and provide technical guidance to data engineering and analytics teams on schema design and platform choices.
+Partner with engineering leadership to translate business requirements into long-term data platform roadmaps.
+Assess current data architecture for gaps, technical debt, and scalability risks, and propose remediation strategies.
+Required Skills:
+Proven experience architecting enterprise-scale data platforms and data warehouses.
+Deep expertise in data modeling (conceptual, logical, physical) and tools such as ER/Studio or similar.
+Strong understanding of data governance, data quality frameworks, and master data management.
+Experience defining architecture standards across AWS data services (S3, Glue, Redshift, Lake Formation) or equivalent cloud platforms.
+Excellent stakeholder management and the ability to present architectural decisions to both technical and business audiences.
+AWS certification(s) such as AWS Certified Data Analytics or Solutions Architect is a plus.
