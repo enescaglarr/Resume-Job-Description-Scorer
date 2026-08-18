@@ -2,81 +2,81 @@
 
 Reference script for demoing the Resume JD Scorer web app (`./run.sh`). Each scenario
 gives the exact resume/JD files to load and the exact chat question to ask, so the demo
-is reproducible. Results captured below are from an actual run (2026-08-18) using
+is reproducible. Results captured below are from actual runs (2026-08-18/19) using
 `resume_data_synthetic/` (safe to share - no real PII) and Gemini for scoring / Groq
 (`openai/gpt-oss-20b`) for chat and reports.
 
 ---
 
-## Scenario 1 - Strong-ish match + chat gap analysis ✅ tested
+## Scenario 1 - Strong match + chat gap analysis ✅ tested
 
-**Resume:** `resume_data_synthetic/Data Scientist/resume-54.pdf`
-**JD:** `jd_data/ds1_volvo.txt`
+**Resume:** `resume_data_synthetic/Data Engineer/resume-40.pdf`
+**JD:** `jd_data/de3_amazon.txt`
 
 **Steps:** Upload both → click "Calculate Match Score" → ask the chat a follow-up question.
 
-**Result:** **70% - "Strong match"**
+**Result:** **78% - "Strong match"**
 
 **Chat question:** `Why isn't this 100%? What's my biggest gap?`
 
 **Chat answer (verbatim):**
-> The 70% score reflects that you have solid data-science fundamentals (pandas, XGBoost, SQL, model deployment, feature-engineering automation) that overlap with the job's general "data-driven" focus. However, the role is heavily centered on powertrain engineering and control-system simulation, and the resume shows several key gaps:
+> The 78% score reflects that your résumé covers many core data-engineering skills, but it falls short on several key areas the Amazon Prime role explicitly requires:
 >
-> | Gap | Why it matters for the role |
-> |---|---|
-> | Domain expertise | The job requires a background in mechanical/automotive/mechatronics engineering and a deep understanding of powertrain systems, emissions, and control loops. |
-> | Control-system & simulation skills | No mention of experience with closed-loop control, numerical simulation, or tools like MATLAB/Simulink. |
-> | Advanced ML & time-series | The description calls for regression, clustering, neural networks, and time-series modeling; your resume lists only XGBoost and general ML. |
-> | Large-scale data engineering | No evidence of working with Hadoop, Spark, Azure, or big-data pipelines. |
-> | Visualization & reporting | The role values Power BI, QlikView, Tableau; these are absent from your skill set. |
-> | Programming & tooling breadth | Missing experience with TensorFlow, R, Git, C/C++, Scala, or pySpark. |
-> | Educational background | The job prefers a Master's in a relevant engineering field; your degree is in mathematics. |
+> | Gap | Why it matters for the job | How to address it |
+> |---|---|---|
+> | AWS-specific services (Redshift, S3, Glue, EMR, Kinesis, Firehose, Lambda, IAM) | The role is built around the AWS stack; experience with these services is listed as a preferred qualification. | Add any projects where you used these services. If you haven't, consider a short course or a side project that demonstrates your ability to work with them. |
+> | SQL & data modeling | The description stresses "data modeling, warehousing, and building ETL pipelines." | Highlight any SQL work, schema design, or ETL logic you've written. If you used Spark or Airflow for ETL, frame it in terms of data modeling and warehouse design. |
+> | Business Intelligence / reporting | The team delivers real-time insights to marketing, finance, and analytics stakeholders. | Mention any dashboards, metrics, or reporting you've built, and the impact on business decisions. |
+> | Non-relational data stores | Preferred to show versatility with object, document, or key-value stores. | If you've used DynamoDB, S3, or similar, list it. If not, note your familiarity or willingness to learn. |
+> | Leadership / mentoring | The role expects technical leadership and mentoring of a data-engineering team. | If you've led projects, mentored junior engineers, or coordinated cross-functional teams, quantify that experience. |
 >
-> **How to close the gap**
-> 1. Highlight transferable skills - emphasize projects involving real-time prediction, model deployment, or automation that could map to powertrain scenarios.
-> 2. Add relevant coursework or certifications - even a short course in control systems, automotive engineering, or MATLAB/Simulink can signal intent.
-> 3. Showcase data-engineering experience - list cloud services, big-data tools, or pipelines you've built.
-> 4. Include visualization work - mention dashboards you've built and the tools used.
-> 5. Tailor the summary - state a clear interest in powertrain analytics and a willingness to learn domain-specific tools.
+> **Bottom line:** Your résumé demonstrates solid engineering chops, but it lacks explicit evidence of AWS-centric tooling, SQL/data-modeling depth, BI/reporting focus, and leadership - all of which are central to the Amazon Prime Data Engineer position. Adding concrete examples in these areas will push the match score closer to 100%.
 
-**Why this works as a demo:** `ds1_volvo.txt` reads more like a powertrain/automotive engineering
-posting than a typical Data Scientist JD, so the moderate (not high) score and the chat's
-domain-gap reasoning both look credible and specific rather than generic.
+**Why this works as a demo:** A Data Engineer resume against Amazon Prime's Data Engineer JD -
+same discipline, so the score lands well into green "Strong match" territory, and the chat still
+finds real, specific gaps (AWS service names pulled straight from the JD) instead of generic praise.
 
 ---
 
 ## Scenario 2 - Weak/mismatched pair (contrast) ✅ tested
 
-**Resume:** `resume_data_synthetic/Data Analyst/resume-14.pdf`
-**JD:** `jd_data/mle1_allianz.txt` (Data Analyst resume vs. ML Engineer JD - deliberate mismatch)
+**Resume:** `resume_data_synthetic/Big Data Analyst/resume-1.pdf`
+**JD:** `jd_data/mlops2_convin.txt` (Big Data Analyst resume vs. startup backend/AI-product JD - deliberate mismatch)
 
 **Steps:** Upload both → click "Calculate Match Score" → ask the chat a follow-up question.
 
-**Result:** **69% - "Moderate match"** (lower than Scenario 1's 70%, and downgraded from
-green "Strong" to yellow "Moderate" even though the raw number is close - shows the
-score/label thresholds are meaningfully different pairs, not just noise)
+**Result:** **66% - "Moderate match"** (12 points below Scenario 1's 78%, and downgraded from
+green "Strong" to yellow "Moderate" - a clear, visible contrast between a same-discipline
+pair and a cross-discipline one)
 
 **Chat question:** `Why am I not a good fit for this role?`
 
 **Chat answer (verbatim):**
-> You're not a strong fit for this role mainly because the job requires a solid background in end-to-end machine-learning engineering and MLOps, whereas your résumé focuses on data analysis and A/B testing. Specific gaps include:
+> **Why the fit isn't strong**
 >
-> | Requirement | Your résumé |
-> |---|---|
-> | 3-5 yrs of experience building, deploying, and monitoring ML models | No ML model work mentioned |
-> | Python programming for production-grade code | Only "Python" listed; no evidence of software-engineering practices |
-> | CI/CD pipelines, Jenkins/GitHub Actions, Docker/Kubernetes | No mention of CI/CD, containerization, or orchestration |
-> | Cloud platform (Azure preferred) | No cloud experience listed |
-> | REST API development for model serving | Not referenced |
-> | Collaboration with back-end engineers on GPU/memory requirements | No relevant collaboration described |
-> | Degree in CS, Physics, Math, or Statistics | M.S. in Data Science - not a direct match to the listed fields |
+> | Job Requirement | Resume Evidence | Gap |
+> |---|---|---|
+> | Python backend development | No mention of Python or backend coding | Core language for the role is missing |
+> | ChatGPT / NLP integration | No NLP or language-model experience | Key AI component absent |
+> | DevOps & CI/CD | No explicit DevOps, deployment, or monitoring experience | Required for cloud-scale operations |
+> | Cloud services breadth | AWS EMR experience only | Limited exposure to the full AWS stack and other clouds |
+> | Backend architecture/design | Focus on data pipelines, not API or service design | Lacks architectural depth for SaaS products |
 >
-> Because the role is heavily focused on ML production, infrastructure, and software engineering, the lack of these specific experiences and skills makes you a less suitable candidate. To improve fit, consider highlighting any hidden ML or engineering work, pursuing certifications in MLOps, or gaining hands-on experience with Docker, Kubernetes, and cloud services.
+> **Match score context (66%)**
+> A 66% similarity indicates that while you have relevant data-engineering skills, the resume does not cover the critical backend-development, Python, NLP, or DevOps aspects that the role demands.
+>
+> **What to improve**
+> 1. Add Python projects - Highlight any scripts, micro-services, or data-processing code written in Python.
+> 2. Show NLP experience - If you've used libraries like Hugging Face, spaCy, or integrated language models, list them.
+> 3. DevOps exposure - Mention CI/CD pipelines, containerization (Docker), orchestration (Kubernetes), or cloud deployment scripts.
+> 4. Broader cloud skills - Include other AWS services (Lambda, ECS, RDS) or experience with Azure/GCP.
+> 5. Backend architecture - Briefly describe any API design, micro-service patterns, or system scalability work.
+>
+> By addressing these gaps, your resume will align more closely with the backend-focused, AI-centric nature of the Convin role.
 
-**Why this works as a demo:** Even though the raw score (69%) is close to Scenario 1's 70%,
-the label flips from green "Strong match" to yellow "Moderate match" - good for showing the
-score isn't just a single number but maps to a clear tier. The chat answer is fully grounded
-in a specific requirement-vs-resume table, not generic advice.
+**Why this works as a demo:** The 78% → 66% drop (and the green → yellow label flip) makes the
+contrast between a matched and mismatched pair immediately visible. The chat answer is fully
+grounded in a specific requirement-vs-resume table, not generic advice.
 
 ---
 
