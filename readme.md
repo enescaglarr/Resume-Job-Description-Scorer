@@ -8,8 +8,8 @@ For anyone who just wants the commands - see the Detailed Setup Guide below for 
 
 ```bash
 # 1. Clone and configure environment
-git clone <this-repo-url>
-cd ResumeJDScorer
+git clone https://github.com/enescaglarr/Resume-Job-Description-Scorer.git
+cd Resume-Job-Description-Scorer
 cp .env.example .env
 # open .env and fill in GOOGLE_API_KEY (aistudio.google.com) and GROQ_API_KEY (console.groq.com) - both free
 
