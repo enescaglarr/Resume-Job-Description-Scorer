@@ -109,7 +109,7 @@ if "messages" not in st.session_state.keys():
 
 def clear_chat_history():
     global resume_chain
-    st.session_state.messages = [{"role": "assistant", "content": "How may I help you today?"}]
+    st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
     resume_chain = ConversationChain(
         llm=llm,
         prompt=prompt_template,

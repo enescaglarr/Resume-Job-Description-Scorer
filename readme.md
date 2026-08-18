@@ -117,7 +117,7 @@ On Mac, this step is usually unnecessary when both are installed via Homebrew.
 
 `src/`:
 - `resume_suggestions.py` - the Streamlit web app: upload a resume + JD (or paste the JD text directly), click "Calculate Match Score" to see a live embedding-similarity score, chat (Groq) for tailored suggestions, or generate a full multi-section report with a "Download Report as PDF" button.
-- `resume_scorer.py` - batch-scores every resume in `resume_data/` (or `resume_data_synthetic/`) against every JD in `jd_data/` using cached embeddings, and prints the best-matching JD per resume.
+- `resume_scorer.py` - batch-scores every resume in `resume_data/` (or `resume_data_synthetic/`) against the JDs in its own role category (matched via a filename convention, e.g. `mle3_ubs` → Machine Learning Engineer) using cached embeddings, and prints the best-matching JD per resume.
 - `embedding_model.py` - wraps Gemini embeddings (`GoogleGenerativeAIEmbeddings`), including saving/loading a `.pkl` cache.
 - `directory_reader.py` - reads JD `.txt` files and resume `.pdf` files; falls back to OCR (deskew + Tesseract) for scanned/image-only PDFs.
 - `constants.py` - central config: paths, model names, prompt templates. Loads `GOOGLE_API_KEY` and `GROQ_API_KEY` from `.env`.
@@ -148,7 +148,7 @@ On Mac, this step is usually unnecessary when both are installed via Homebrew.
 
 **Match Scoring**
 - Cosine similarity between Gemini embeddings of a resume and a job description, shown live in the web app as a 0-100% score with a strong/moderate/weak label.
-- Batch mode (`resume_scorer.py`) scores an entire local dataset at once and reports each resume's best-matching JD.
+- Batch mode (`resume_scorer.py`) scores an entire local dataset at once and reports each resume's best-matching JD within its own role category.
 
 **AI Resume Suggestions**
 - Chat interface (Groq) scoped to the uploaded resume + JD (and aware of the match score), for questions like "why isn't this 100%?" or "what's my biggest gap?" - guardrailed to refuse off-topic questions.
@@ -187,7 +187,7 @@ See `DEMO.md` for exact reproducible resume/JD pairs and example chat questions/
 cd src
 python resume_scorer.py
 ```
-Reads every JD in `jd_data/` and every resume in `resume_data_synthetic/` (the default `RESUME_PATH` in `constants.py` - point it at `../resume_data/*/*` instead if you have the real, gitignored dataset locally), embeds them, and prints each resume's best-matching JD with a percentage score.
+Reads every JD in `jd_data/` and every resume in `resume_data_synthetic/` (the default `RESUME_PATH` in `constants.py` - point it at `../resume_data/*/*` instead if you have the real, gitignored dataset locally), embeds them, and prints each resume's best-matching JD (within its own role category) with a percentage score. To score across all categories instead, use `scripts/test_scoring.py`.
 
 **Regenerating the synthetic resume set:**
 ```bash
