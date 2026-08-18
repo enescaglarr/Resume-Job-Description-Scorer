@@ -1,6 +1,6 @@
-# Resume JD Scorer
+# Resume Job Description Scorer
 
-Resume JD Scorer analyzes resumes against job descriptions using Google Gemini embeddings for match scoring and Groq for chat/report generation. It pairs an embedding-based match-scoring pipeline (with a batch scorer for local datasets) with a Streamlit web app that gives a live match score plus AI-generated, chat-based resume suggestions and a downloadable PDF report.
+Resume Job Description Scorer analyzes resumes against job descriptions using Google Gemini embeddings for match scoring and Groq for chat/report generation. It pairs an embedding-based match-scoring pipeline (with a batch scorer for local datasets) with a Streamlit web app that gives a live match score plus AI-generated, chat-based resume suggestions and a downloadable PDF report.
 
 ## Quick Start
 
@@ -41,8 +41,8 @@ On Windows, after installing Poppler/Tesseract you need to add their `bin` folde
 ### 2. Clone the repo and set up the environment
 
 ```bash
-git clone <this-repo-url>
-cd ResumeJDScorer
+git clone https://github.com/enescaglarr/Resume-Job-Description-Scorer.git
+cd Resume-Job-Description-Scorer
 ```
 
 The easiest path is `./run.sh` (see Quick Start) - it creates `.venv`, installs `requirements.txt`, and launches the app in one command, every time.
