@@ -130,6 +130,8 @@ On Mac, this step is usually unnecessary when both are installed via Homebrew.
 
 `scripts/generate_synthetic_resumes.py`: regenerates `resume_data_synthetic/` deterministically. Run with `pip install -r requirements-dev.txt` first (needs `faker` + `fpdf2`, dev-only deps not required to run the app).
 
+`scripts/test_scoring.py`: end-to-end accuracy test - scores every resume (`resume_data/` if present, plus `resume_data_synthetic/`) against every JD in `jd_data/`, checks whether each resume's top-scoring JD falls in its own job category, and generates a few sample "Generate Report" outputs for manual review. Needs `GOOGLE_API_KEY` and `GROQ_API_KEY`; writes `score_matrix.csv`, `accuracy_summary.txt`, and `sample_reports/*.txt` to `test_output/` (gitignored, overridable via the `TEST_OUTPUT_DIR` env var).
+
 `output/`: cached JD/resume embedding `.pkl` files produced by `resume_scorer.py` (gitignored - regenerated on demand).
 
 `Resume_Scorer.ipynb` / `Resume_Suggestions.ipynb`: exploratory notebook versions of the scoring pipeline and the chat app.
@@ -192,3 +194,9 @@ Reads every JD in `jd_data/` and every resume in `resume_data_synthetic/` (the d
 pip install -r requirements-dev.txt
 python scripts/generate_synthetic_resumes.py
 ```
+
+**Running the accuracy test:**
+```bash
+python scripts/test_scoring.py
+```
+Embeds and scores every resume against every JD, reports top-1 category accuracy (overall and per-category) to `test_output/accuracy_summary.txt`, dumps the full score matrix to `test_output/score_matrix.csv`, and writes a few sample multi-section reports to `test_output/sample_reports/`.
